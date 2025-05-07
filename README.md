@@ -1,53 +1,75 @@
 
 # Azure Key Vault with Private Endpoint Deployment
 
-## Project Overview
-This project demonstrates how to deploy an Azure Key Vault with a private endpoint using Terraform. The private endpoint restricts access to the Key Vault over a private IP address within a virtual network, enhancing security by eliminating public exposure.
+This Terraform project deploys an Azure Key Vault with a private endpoint within a virtual network. The deployment includes a subnet for the private endpoint and necessary networking components.
+
+## Purpose
+
+- Secure sensitive data using Azure Key Vault.
+- Restrict network access using a private endpoint.
+- Demonstrate private endpoint configuration for Key Vault.
 
 ## Architecture
-- Azure Key Vault
-- Private Endpoint
-- Subnet within a Virtual Network
+
+- Azure Key Vault with a private endpoint.
+- Subnet within a Virtual Network.
 
 ## Files
-- `main.tf`: Defines resources including Key Vault, private endpoint, and networking components.
-- `variables.tf`: Input variables for the deployment.
-- `outputs.tf`: Outputs including the private endpoint IP address and Key Vault name.
+
+- **main.tf**: Defines resources including Key Vault, private endpoint, and networking components.
+- **variables.tf**: Input variables for the deployment.
+- **outputs.tf**: Outputs including the private endpoint IP address and Key Vault name.
 
 ## Screenshots
-- **terraform-apply-success.png**: Terraform apply output showing successful resource creation.
-- **terraform-output.png**: Output values showing key vault name and private endpoint IP address.
-- **keyvault-list.png**: Azure CLI output listing the created Key Vault.
+
+- [terraform-apply-success.png](screenshots/terraform-apply-success.png): Terraform apply output showing successful resource creation.
+- [terraform-output.png](screenshots/terraform-output.png): Output values showing key vault name and private endpoint IP address.
+- [keyvault-list.png](screenshots/keyvault-list.png): Azure CLI output listing the created Key Vault.
 
 ## Deployment Commands
-1. Initialize Terraform:
+
+1. **Initialize Terraform:**
    ```bash
    terraform init
    ```
 
-2. Apply Terraform configuration:
+2. **Validate the Configuration:**
+   ```bash
+   terraform validate
+   ```
+
+3. **Plan the Deployment:**
+   ```bash
+   terraform plan -out=tfplan
+   ```
+
+4. **Apply the Deployment:**
    ```bash
    terraform apply -auto-approve
    ```
 
-3. Verify the resources:
+5. **View Outputs:**
    ```bash
-   az group list --output table
+   terraform output
+   ```
+
+6. **List Key Vaults in Resource Group:**
+   ```bash
    az keyvault list --resource-group rg-keyvault-private-endpoint-001 --output table
    ```
 
-4. Query Key Vault URI:
+7. **Check Key Vault URI:**
    ```bash
    az keyvault show --name kvsecure86071 --resource-group rg-keyvault-private-endpoint-001 --query "properties.vaultUri"
    ```
 
 ## Cleanup
-To destroy the resources:
+
+To destroy the resources and avoid unnecessary charges:
+
 ```bash
 terraform destroy -auto-approve
 ```
 
-## Notes
-- Ensure the Azure CLI is authenticated using `az login` before deploying resources.
-- The private endpoint is accessible only within the defined virtual network.
+Ensure that all resources are removed to prevent any unexpected costs.
 
