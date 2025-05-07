@@ -14,9 +14,14 @@ This Terraform configuration deploys an Azure Key Vault with a private endpoint,
 - **outputs.tf**: Outputs including the private endpoint IP address and Key Vault name.
 
 ## Screenshots
-- [terraform-apply-success.png](./screenshots/terraform-apply-success.png): Terraform apply output showing successful resource creation.
-- [terraform-output.png](./screenshots/terraform-output.png): Output values showing key vault name and private endpoint IP address.
-- [keyvault-list.png](./screenshots/keyvault-list.png): Azure CLI output listing the created Key Vault.
+![Terraform Apply Success](./screenshots/terraform-apply-success.png)  
+Terraform apply output showing successful resource creation.
+
+![Terraform Output](./screenshots/terraform-output.png)  
+Output values showing key vault name and private endpoint IP address.
+
+![Key Vault List](./screenshots/keyvault-list.png)  
+Azure CLI output listing the created Key Vault.
 
 ## Deployment Commands
 
